@@ -23,6 +23,7 @@ public class Adresse {
 	}
 	
 	public void afficher() {
+		System.out.println("Adresse :");
 		if(this.mentions!=null)
 			System.out.println(this.mentions);
 		System.out.print(this.numeroVoie);

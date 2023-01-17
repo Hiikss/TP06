@@ -4,31 +4,23 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
-public class Patient {
+public class Patient extends Personne{
 
-	private String nom;
-	private String prenom;
-	private String numeroDeTelephone;
 	private char sexe;
 	private long numeroSecu;
 	private LocalDate dateDeNaissance;
 	private String commentaires;
-	private Adresse adresse;
 	
 	public Patient(String nom, String prenom, String numeroDeTelephone, char sexe, long numeroSecu, LocalDate dateDeNaissance, String commentaires, Adresse adresse) {
-		this.nom = nom.toUpperCase();
-		this.prenom = prenom;
-		this.numeroDeTelephone = numeroDeTelephone;
+		super(nom, prenom, numeroDeTelephone, adresse);
 		this.sexe = sexe;
 		this.numeroSecu = numeroSecu;
 		this.dateDeNaissance = dateDeNaissance;
 		this.commentaires = commentaires;
-		this.adresse = adresse;
 	}
 	
 	public void afficher() {
-		System.out.println(this.nom + " " + this.prenom);
-		System.out.println("Téléphone : " + this.numeroDeTelephone);
+		super.afficher();
 		if(this.sexe=='M')
 			System.out.println("Sexe : Masculin");
 		else
@@ -39,7 +31,6 @@ public class Patient {
 			System.out.println("Commentaires : " + this.commentaires);
 		else
 			System.out.println("Commentaires : [aucun commentaire]");
-		System.out.println("Adresse :");
 		this.adresse.afficher();
 	}
 }
