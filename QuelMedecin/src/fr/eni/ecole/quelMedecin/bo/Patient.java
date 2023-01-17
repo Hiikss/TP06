@@ -13,8 +13,9 @@ public class Patient {
 	private long numeroSecu;
 	private LocalDate dateDeNaissance;
 	private String commentaires;
+	private Adresse adresse;
 	
-	public Patient(String nom, String prenom, String numeroDeTelephone, char sexe, long numeroSecu, LocalDate dateDeNaissance, String commentaires) {
+	public Patient(String nom, String prenom, String numeroDeTelephone, char sexe, long numeroSecu, LocalDate dateDeNaissance, String commentaires, Adresse adresse) {
 		this.nom = nom.toUpperCase();
 		this.prenom = prenom;
 		this.numeroDeTelephone = numeroDeTelephone;
@@ -22,6 +23,7 @@ public class Patient {
 		this.numeroSecu = numeroSecu;
 		this.dateDeNaissance = dateDeNaissance;
 		this.commentaires = commentaires;
+		this.adresse = adresse;
 	}
 	
 	public void afficher() {
@@ -37,5 +39,7 @@ public class Patient {
 			System.out.println("Commentaires : " + this.commentaires);
 		else
 			System.out.println("Commentaires : [aucun commentaire]");
+		System.out.println("Adresse :");
+		this.adresse.afficher();
 	}
 }
