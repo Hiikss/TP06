@@ -6,6 +6,7 @@ import java.time.Month;
 public class Location {
 
 	public static void main(String[] args) {
+		System.out.println("Voici les cycles que nous proposons à la location :");
 		Cycle[] cycles = {
 				new Velo("Lapierre", "speed 400", LocalDate.of(2022, Month.JANUARY, 6), 27),
 				new Velo("Btwin", "riverside 900", LocalDate.of(2023, Month.APRIL, 9), 10),
@@ -16,7 +17,7 @@ public class Location {
 		};
 		
 		for(Cycle c : cycles) {
-			System.out.println(c.toString() + " " + c.getTarifLocation() + "€/heure");
+			System.out.printf(" - %-65s %.2f€/heure\n", c.toString(), c.getTarifLocation());
 		}
 
 	}

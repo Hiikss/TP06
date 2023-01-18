@@ -10,5 +10,10 @@ public abstract class Gyro extends Cycle{
 		super(marque, modele, dateAchat);
 		this.autonomie = autonomie;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("%s %d km d'autonomie", super.toString(), this.autonomie);
+	}
 
 }

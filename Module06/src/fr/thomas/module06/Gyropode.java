@@ -15,4 +15,9 @@ public class Gyropode extends Gyro {
 	public double getTarifLocation() {
 		return 29.90;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("%s [%dm%d min]", super.toString(), this.tailleMin/100, this.tailleMin%100);
+	}
 }
