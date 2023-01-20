@@ -53,17 +53,22 @@ public class PlateauDeReversi {
 	 */
 	public int tester(Pion pion, int l, int c) {
 		int nbPions = 0;
+		//On vérifie que la case sélectionnée est vide
 		if(this.board[l][c]==Pion.LIBRE) {
+			//Pour chaque case autour de la case sélectionnée
 			for(int y=-1; y<=1; y++) {
 				for(int x=-1; x<=1; x++) {
+					//Check si la case existe dans le tableau et si il y a un pion de l'autre joueur
 					if(l+y<SIZE & c+x<SIZE && l+y>0 && c+x>0 && this.board[l+y][c+x]==pion.autrePion()) {
 						int i = 1;
 						while(this.board[l+i*y][c+i*x]==pion.autrePion()) {
+							//S'il n'y a pas de prochain pion sur la ligne
 							if(l+(i+1)*y==SIZE || c+(i+1)*x==SIZE || l+(i+1)*y==-1 || c+(i+1)*x==-1 || this.board[l+(i+1)*y][c+(i+1)*x]==Pion.LIBRE)
 							{
 								i = 0;
 								break;
 							}
+							//Si le prochain pion de la ligne est de la même équipe
 							if(this.board[l+(i+1)*y][c+(i+1)*x]==pion)
 								break;
 							i++;
@@ -98,18 +103,24 @@ public class PlateauDeReversi {
 	 * @param c colonne
 	 */
 	public void poser(Pion pion, int l, int c) {
+		//La case choisie devient un pion
 		this.board[l][c] = pion;
+		//Pour chaque case autour de la case sélectionnée
 		for(int y=-1; y<=1; y++) {
 			for(int x=-1; x<=1; x++) {
+				//Check si la case existe dans le tableau et si il y a un pion de l'autre joueur
 				if(l+y<SIZE & c+x<SIZE && l+y>0 && c+x>0 && this.board[l+y][c+x]==pion.autrePion()) {
 					int i = 1;
 					while(this.board[l+i*y][c+i*x]==pion.autrePion()) {
+						//S'il n'y a pas de prochain pion sur la ligne
 						if(l+(i+1)*y==SIZE || c+(i+1)*x==SIZE || l+(i+1)*y==-1 || c+(i+1)*x==-1 || this.board[l+(i+1)*y][c+(i+1)*x]==Pion.LIBRE)
 						{
 							i = 0;
 							break;
 						}
+						//Si le prochain pion de la ligne est de la même équipe
 						if(this.board[l+(i+1)*y][c+(i+1)*x]==pion) {
+							//Transforme les pions adverses
 							for(int j=1; j<=i; j++) {
 								this.board[l+j*y][c+j*x] = pion;
 							}
@@ -157,10 +168,12 @@ public class PlateauDeReversi {
 				}
 			else {
 				System.err.println(currentPlayer.getSymbole() + " ne peut pas jouer ce tour");
+				afficher();
 				//Change le joueur qui doit jouer
 				currentPlayer = currentPlayer.autrePion();
 			}
 		}
+		afficher();
 		//Le joueur noir gagne
 		if(Pion.NOIR.getNombre() > Pion.BLANC.getNombre())
 			System.out.println(Pion.NOIR.getSymbole() + " " + Pion.NOIR.getJoueur().getNom() + " gagne la partie");
