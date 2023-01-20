@@ -2,7 +2,7 @@ package fr.thomas.reversi;
 
 public interface Joueur {
 
-	void jouer();
+	public int[] jouer(PlateauDeReversi plateau, Pion pion);
 	
-	String getNom();
+	public String getNom();
 }

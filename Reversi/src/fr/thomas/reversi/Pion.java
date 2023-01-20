@@ -1,15 +1,15 @@
 package fr.thomas.reversi;
 
-import java.util.Scanner;
-
 public enum Pion {
 	LIBRE, NOIR, BLANC;
 	
-	private int nombre=2;
+	private int nombre = 2;
 	private Joueur joueur;
 	
-	Scanner input = new Scanner(System.in);
-	
+	/**
+	 * Retourne le symbole du pion
+	 * @return
+	 */
 	public char getSymbole() {
 		switch(this) {
 		case NOIR :
@@ -21,6 +21,10 @@ public enum Pion {
 		}
 	}
 	
+	/**
+	 * Retourne le pion opposé
+	 * @return pion opposé
+	 */
 	public Pion autrePion() {
 		switch(this) {
 		case NOIR :
@@ -32,25 +36,24 @@ public enum Pion {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param pions
+	 */
 	public void gagne(int pions) {
 		this.nombre += pions;
 	}
 	
+	/**
+	 * Choisi qui jouera entre un joueur humain et une IA
+	 */
 	public void choixJoueur() {
 		System.out.println("Qui joue les pions " + this.getSymbole() + " ? 1 = humain; 2 = ordinateur");
-		int saisie = 0;
-		do {
-			try {
-				saisie = Integer.parseInt(input.nextLine());
-				if(saisie==1 || saisie==2)
-					break;
-			}
-			catch(NumberFormatException  e) {
-			}
-			System.err.println("Veuillez saisir une valeur correcte");
-		} while(true);
-		
-		this.joueur = new JoueurHumain();
+		int saisie = Saisie.getInt(1, 2);
+		if(saisie==1)
+			this.joueur = new JoueurHumain();
+		else
+			this.joueur = new JoueurIA();
 	}
 	
 	/**
