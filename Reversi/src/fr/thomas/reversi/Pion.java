@@ -37,11 +37,12 @@ public enum Pion {
 	}
 	
 	/**
-	 * 
+	 * Met à jour le nombre de pion de chaque joueur
 	 * @param pions
 	 */
 	public void gagne(int pions) {
-		this.nombre += pions;
+		this.nombre += pions+1;
+		this.autrePion().nombre -= pions;
 	}
 	
 	/**
