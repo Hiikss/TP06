@@ -3,12 +3,16 @@ package fr.thomas.maximot;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Tirage {
 
 	private String mot;
 	private ArrayList<Character> lettres = new ArrayList<>();
+	private Map<Integer, List<String>> possibilites = new HashMap<>();
 	
 	private Random rdm = new Random();
 	
@@ -17,6 +21,16 @@ public class Tirage {
 		for(int i=0; i<this.mot.length(); i++)
 		{
 			this.lettres.add(rdm.nextInt(this.lettres.size()+1), this.mot.charAt(i));
+		}
+		for (String motDico : Dictionnaire.getMots()) {
+			if (verifLettres(motDico)) {
+				List<String> motsDeLaMemeTaille = this.possibilites.get(motDico.length());
+				if (motsDeLaMemeTaille == null) {
+					this.possibilites.put(motDico.length(), new ArrayList<>());
+					motsDeLaMemeTaille = this.possibilites.get(motDico.length());
+				}
+				motsDeLaMemeTaille.add(motDico);
+			}
 		}
 	}
 
@@ -28,11 +42,17 @@ public class Tirage {
 	}
 	
 	public boolean verifLettres(String mot) {
-		for(int i=0; i<mot.length(); i++) {
-			if(!lettres.contains(mot.charAt(i)))
-				return false;
+		ArrayList<Character> clone = new ArrayList<>(this.lettres);
+		int i = 0;
+		while (i < mot.length() && clone.contains(mot.charAt(i))) {
+			clone.remove(Character.valueOf(mot.charAt(i)));
+			i++;
 		}
-		return true;
+		return i == mot.length();
+	}
+	
+	public Map<Integer, List<String>> getPossibilites() {
+		return this.possibilites;
 	}
 	
 	/**
