@@ -1,4 +1,4 @@
-package fr.thomas.module01;
+package fr.thomas.maximot;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
