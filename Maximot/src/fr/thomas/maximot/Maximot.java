@@ -29,9 +29,9 @@ public class Maximot {
 		}
 		
 		System.out.println("Le mot tiré au sort était : " + tirage.getMot());
-		for(int k : tirage.getPossibilites().keySet()) {
-			System.out.println("Mots de " + k + " caractères");
-			for(String mot : tirage.getPossibilites().get(k)) {
+		for(int p : tirage.getPossibilites().keySet()) {
+			System.out.println("Mots de " + p + " caractères");
+			for(String mot : tirage.getPossibilites().get(p)) {
 				System.out.println(" - " + mot);
 			}
 		}
