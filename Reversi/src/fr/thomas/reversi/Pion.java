@@ -1,6 +1,6 @@
 package fr.thomas.reversi;
 
-public enum Pion {
+public enum Pion implements Affichable {
 	LIBRE, NOIR, BLANC;
 	
 	private int nombre = 2;
